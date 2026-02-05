@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Page</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div>
+      <h1>Welocome To the Website!</h1>
+    </div>
+    <div id="formLoginDiv">
+      <h1>Register Form</h1>
+      <form action="/register" method="post">
+        <label htmlFor="username">Username: </label>
+        <input class="formItems" type="text" name="username" id=""/><br></br>
+        <label htmlFor="password">Password: </label>
+        <input class="formItems" type="password" name="password" id=""/><br></br>
+        <button class="formItems" id="loginButton" type="submit">Register</button><br></br>
+      </form>
+      <h3>Already have an account?</h3>
+      <a href="/login"><button class="formItems" id="toRegisterButton">Login here</button></a>
+      {{#if message}}
+      <h3>{{message}}</h3>
+      {{/if}}
+    </div>
+
+</body>
+
+</html>

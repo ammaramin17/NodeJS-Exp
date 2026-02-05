@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div> 
+      <h1>Welcome , {{message}}!</h1>
+    </div>
+    <div>
+      <h1>Actions you can do:</h1>
+      <form action="/friends" method="get">
+        <button type="submit">Get All Friends</button><br></br>
+      </form>
+      <form action="/friends/email" method="post">
+        <input required type="email" name="email" id="">
+        <button type="submit">Get A Friend by Email</button><br></br>
+      </form>
+      <form action="/friends" method="post">
+        <label for="email">Email:</label>
+        <input required type="email" name="email" id="" ><br>
+        <label for="firstName">First Name:</label>
+        <input required type="text" name="firstName" id=""><br>
+        <label for="lastName">Last Name:</label>
+        <input required type="text" name="lastName" id=""><br>
+        <label for="DOB">Date of Birth:</label>
+        <input required type="date" name="DOB" id=""><br>
+        <button type="submit">Add a Friend</button><br></br>
+      </form>
+      <form action="/friends/email/update" method="post">
+        <label for="email">Email:</label>
+        <input required type="email" name="email" id="" ><br>
+        <label for="firstName">First Name:</label>
+        <input type="text" name="firstName" id=""><br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastName" id=""><br>
+        <label for="DOB">Date of Birth:</label>
+        <input type="date" name="DOB" id=""><br>
+        <button type="submit">Update Friend Details</button><br></br>
+      </form>
+      <form action="/friends/email/delete" method="post">
+        <input required type="email" name="email" id="">
+        <button type="submit">Delete A Friend by Email</button><br></br>
+      </form>
+    </div>
+
+</body>
+
+</html>

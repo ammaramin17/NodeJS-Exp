@@ -1,20 +1,15 @@
 const express = require('express');
-const axios=require('axios')
 let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
 const public_users = express.Router();
-
-const client=axios.create({
-  baseURL:"http://127.0.0.1:5000"
-})
 
 
 public_users.post("/register", (req,res) => {
   const username=req.query.username
   const password=req.query.password
 
-  if (username && password)
+  if (isValid(username) && password)
   {
     duplicates=users.filter((user)=>user.username===username)
     if (duplicates.length>0){
@@ -33,13 +28,7 @@ public_users.post("/register", (req,res) => {
 });
 
 public_users.get('/',function (req, res) {
-  // return res.send(JSON.stringify(books,null,4))
-  const promise=new Promise((succ,fail)=>{
-    succ(JSON.stringify(books,null,4))
-  })
-  promise.then((success)=>{
-    return res.send(success)
-  })
+  return res.send(JSON.stringify(books,null,4))
 });
 
 
@@ -47,13 +36,7 @@ public_users.get('/',function (req, res) {
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
   const isbn=req.params.isbn
-  // return res.send(JSON.stringify(books[isbn],null,4))
-  const promise=new Promise((succ,fail)=>{
-    succ(JSON.stringify(books[isbn],null,4))
-  })
-  promise.then((success)=>{
-    return res.send(success)
-  })
+  return res.send(JSON.stringify(books[isbn],null,4))
  });
   
 // Get book details based on author
@@ -66,13 +49,7 @@ public_users.get('/author/:author',function (req, res) {
         filtered_books_author[key]=books[key]
     }
   })
-  const promise=new Promise((succ,fail)=>{
-    succ(JSON.stringify(filtered_books_author,null,4))
-  })
-  promise.then((success)=>{
-    return res.send(success)
-  })
-  // res.send(JSON.stringify(filtered_books_author,null,4))
+  res.send(JSON.stringify(filtered_books_author,null,4))
 });
 
 // Get all books based on title
@@ -85,14 +62,7 @@ public_users.get('/title/:title',function (req, res) {
           filtered_books[key]=books[key]
       }
     })
-    // res.send(JSON.stringify(filtered_books,null,4))
-    const promise=new Promise((succ,fail)=>{
-    succ(JSON.stringify(filtered_books,null,4))
-  })
-  promise.then((success)=>{
-    return res.send(success)
-  })
-    
+    res.send(JSON.stringify(filtered_books,null,4))
 });
 
 //  Get book review
